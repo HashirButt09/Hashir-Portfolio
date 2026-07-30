@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Custom SVG Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  
   <!-- Primary Title & Description -->
   <title>Hashir Hussain Butt | AI & Backend Engineer Portfolio</title>
   <meta name="description" content="Portfolio of Hashir Hussain Butt - AI & Backend Engineer specializing in FastAPI, Python, Flutter, and scalable software solutions.">
@@ -169,6 +172,23 @@
     .animate-float-3 { animation: floating 5.5s ease-in-out infinite 2s; }
     .animate-float-4 { animation: floating 4.8s ease-in-out infinite 1.5s; }
     .animate-float-5 { animation: floating 6.5s ease-in-out infinite 0.5s; }
+
+    /* Custom Pointer & Trail Styles */
+    @media (pointer: fine) {
+      body, html {
+        cursor: none;
+      }
+      a, button, input, textarea, select, [role="button"], #googleSignOutBtn, #resetFormBtn, .g_id_signin {
+        cursor: none !important;
+      }
+      .custom-cursor-hover {
+        transform: translate(-50%, -50%) scale(1.4) !important;
+      }
+      .custom-cursor-hover span {
+        color: #8b5cf6 !important; /* purple glow on hover */
+        text-shadow: 0 0 16px rgba(139, 92, 246, 0.95) !important;
+      }
+    }
   </style>
 </head>
 <body class="text-gray-100 overflow-x-hidden antialiased">
@@ -1053,6 +1073,158 @@
         if (link.getAttribute('href') === `#${currentSectionId}`) {
           link.classList.remove('text-gray-400', 'border-transparent');
           link.classList.add('text-accentcyan', 'border-accentcyan');
+        }
+      });
+    });
+  </script>
+  <!-- Custom Cursor & Stardust Trail HTML -->
+  <div id="custom-cursor" class="hidden md:flex pointer-events-none fixed top-0 left-0 w-8 h-8 items-center justify-center z-[9999] -translate-x-1/2 -translate-y-1/2 select-none transition-transform duration-75 ease-out opacity-0">
+    <span class="text-accentcyan font-extrabold text-xl filter drop-shadow-[0_0_8px_rgba(6,182,212,0.8)] font-outfit select-none">H</span>
+  </div>
+  <canvas id="cursor-trail" class="pointer-events-none fixed inset-0 z-[9998]"></canvas>
+
+  <!-- Custom Cursor & Trail Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Check if device supports fine pointer (mouse)
+      const hasFinePointer = window.matchMedia('(pointer: fine)').matches;
+      if (!hasFinePointer) return;
+
+      const canvas = document.getElementById('cursor-trail');
+      const ctx = canvas.getContext('2d');
+      const customCursor = document.getElementById('custom-cursor');
+
+      let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+      let cursorX = mouse.x;
+      let cursorY = mouse.y;
+
+      // Handle screen resize
+      function resizeCanvas() {
+        if (canvas) {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
+      }
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      // Show custom cursor on first mouse move
+      window.addEventListener('mousemove', function showCursor(e) {
+        if (customCursor) {
+          customCursor.style.opacity = '1';
+        }
+        window.removeEventListener('mousemove', showCursor);
+      });
+
+      // Track mouse position and spawn particles
+      window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+
+        // Add stardust particle on movement
+        if (Math.random() < 0.6) {
+          createParticle(e.clientX, e.clientY);
+        }
+      });
+
+      // Hide cursor when leaving window
+      document.addEventListener('mouseleave', () => {
+        if (customCursor) customCursor.style.opacity = '0';
+      });
+      document.addEventListener('mouseenter', () => {
+        if (customCursor) customCursor.style.opacity = '1';
+      });
+
+      // Particle System
+      class Particle {
+        constructor(x, y) {
+          this.x = x;
+          this.y = y;
+          this.size = Math.random() * 6 + 3;
+          this.speedX = (Math.random() - 0.5) * 1.5;
+          this.speedY = (Math.random() - 0.5) * 1.5 - 0.2; // Slight upward drift
+          
+          // Mix colors (Cyan: 188, Purple: 262, Pink: 312)
+          const rand = Math.random();
+          if (rand < 0.4) {
+            this.colorHue = 188; // Cyan
+          } else if (rand < 0.8) {
+            this.colorHue = 262; // Purple
+          } else {
+            this.colorHue = 312; // Pink
+          }
+
+          this.alpha = 1.0;
+          this.decay = Math.random() * 0.015 + 0.01;
+        }
+
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+          this.size *= 0.95;
+          this.alpha -= this.decay;
+        }
+
+        draw() {
+          ctx.save();
+          ctx.globalAlpha = this.alpha;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = `hsla(${this.colorHue}, 90%, 60%, ${this.alpha})`;
+          ctx.fillStyle = `hsla(${this.colorHue}, 90%, 65%, ${this.alpha})`;
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+
+      const particles = [];
+
+      function createParticle(x, y) {
+        particles.push(new Particle(x, y));
+      }
+
+      // Animation Loop
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Smooth cursor glide (Lerp)
+        const dx = mouse.x - cursorX;
+        const dy = mouse.y - cursorY;
+        cursorX += dx * 0.18;
+        cursorY += dy * 0.18;
+
+        if (customCursor) {
+          customCursor.style.left = `${cursorX}px`;
+          customCursor.style.top = `${cursorY}px`;
+        }
+
+        // Update & Draw particles
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+          p.update();
+          p.draw();
+          if (p.alpha <= 0 || p.size <= 0.1) {
+            particles.splice(i, 1);
+          }
+        }
+
+        requestAnimationFrame(animate);
+      }
+      animate();
+
+      // Dynamic Event Delegation for hover state on links & buttons
+      document.addEventListener('mouseover', (e) => {
+        const target = e.target.closest('a, button, input, textarea, select, [role="button"], #googleSignOutBtn, #resetFormBtn, .g_id_signin');
+        if (target) {
+          customCursor?.classList.add('custom-cursor-hover');
+        }
+      });
+
+      document.addEventListener('mouseout', (e) => {
+        const target = e.target.closest('a, button, input, textarea, select, [role="button"], #googleSignOutBtn, #resetFormBtn, .g_id_signin');
+        if (target) {
+          customCursor?.classList.remove('custom-cursor-hover');
         }
       });
     });
