@@ -3,10 +3,6 @@
     {
       "src": "/api/(.*)",
       "dest": "/api/index.py"
-    },
-    {
-      "src": "/((?!api/).*)",
-      "dest": "/public/index.html"
     }
   ]
 }
