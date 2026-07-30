@@ -1,0 +1,19 @@
+# Python cache and byte-compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environments and virtualenvs
+.env
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Operating system files
+Thumbs.db
+Desktop.ini
+.DS_Store

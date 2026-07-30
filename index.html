@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hashir Butt | AI & Backend Software Engineer Portfolio</title>
+  <meta name="description" content="Portfolio of Hashir Butt, an AI & Backend Software Engineer specializing in Generative AI, LLM Orchestration, FastAPI, and Computer Vision.">
+  
+  <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- AOS (Animate On Scroll) CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Sign-In Identity Services Library -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  
+  <!-- Tailwind Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            darkbg: '#0B0F19',
+            darkcard: '#121824',
+            darkcardBorder: 'rgba(255, 255, 255, 0.05)',
+            accentcyan: {
+              DEFAULT: '#06b6d4',
+              glow: 'rgba(6, 182, 212, 0.15)',
+            },
+            accentpurple: {
+              DEFAULT: '#8b5cf6',
+              glow: 'rgba(139, 92, 246, 0.15)',
+            },
+            accentpink: {
+              DEFAULT: '#d946ef',
+              glow: 'rgba(217, 70, 239, 0.15)',
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Outfit', 'sans-serif'],
+            outfit: ['Outfit', 'sans-serif'],
+          },
+          boxShadow: {
+            'neon-cyan': '0 0 20px rgba(6, 182, 212, 0.2)',
+            'neon-purple': '0 0 20px rgba(139, 92, 246, 0.2)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Styles for Effects & Scrollbar -->
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      background-color: #0B0F19;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0B0F19;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1F2937;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #374151;
+    }
+
+    /* Ambient Blur Background Blobs animation */
+    @keyframes float-blob {
+      0%, 100% {
+        transform: translate(0, 0) scale(1);
+      }
+      33% {
+        transform: translate(40px, -60px) scale(1.15);
+      }
+      66% {
+        transform: translate(-30px, 30px) scale(0.9);
+      }
+    }
+
+    .animate-blob-1 {
+      animation: float-blob 22s infinite ease-in-out;
+    }
+    .animate-blob-2 {
+      animation: float-blob 28s infinite ease-in-out 4s;
+    }
+    .animate-blob-3 {
+      animation: float-blob 25s infinite ease-in-out 8s;
+    }
+
+    /* Interactive Mouse Hover Glow Effect */
+    .glow-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .glow-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle 250px at var(--x, 50%) var(--y, 50%), rgba(6, 182, 212, 0.1) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .glow-card:hover::after {
+      opacity: 1;
+    }
+
+    .glow-card-purple::after {
+      background: radial-gradient(circle 250px at var(--x, 50%) var(--y, 50%), rgba(139, 92, 246, 0.1) 0%, transparent 60%);
+    }
+
+    /* Shimmer button effect */
+    .btn-shimmer {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-shimmer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -150%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+      transition: 0.6s;
+    }
+    .btn-shimmer:hover::before {
+      left: 150%;
+    }
+
+    /* Floating Keyframe Animation for Tech Badges */
+    @keyframes floating {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    .animate-float-1 { animation: floating 5s ease-in-out infinite; }
+    .animate-float-2 { animation: floating 6s ease-in-out infinite 1s; }
+    .animate-float-3 { animation: floating 5.5s ease-in-out infinite 2s; }
+    .animate-float-4 { animation: floating 4.8s ease-in-out infinite 1.5s; }
+    .animate-float-5 { animation: floating 6.5s ease-in-out infinite 0.5s; }
+  </style>
+</head>
+<body class="text-gray-100 overflow-x-hidden antialiased">
+
+  <!-- Ambient Blurred Background Blobs -->
+  <div class="fixed inset-0 -z-10 overflow-hidden bg-darkbg">
+    <!-- Purple Blob -->
+    <div class="absolute -top-40 -left-40 w-[450px] h-[450px] bg-accentpurple/15 rounded-full filter blur-[120px] animate-blob-1"></div>
+    <!-- Cyan Blob -->
+    <div class="absolute top-[40%] -right-40 w-[500px] h-[500px] bg-accentcyan/10 rounded-full filter blur-[130px] animate-blob-2"></div>
+    <!-- Pinkish/Violet Blob -->
+    <div class="absolute -bottom-40 left-[20%] w-[450px] h-[450px] bg-accentpink/8 rounded-full filter blur-[110px] animate-blob-3"></div>
+  </div>
+
+  <!-- HEADER / NAVBAR -->
+  <header id="header" class="sticky top-0 z-50 w-full backdrop-blur-lg bg-darkbg/75 border-b border-white/5 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#home" class="flex flex-col md:flex-row md:items-center gap-1 md:gap-3 group">
+        <span class="text-xl md:text-2xl font-extrabold tracking-tight font-outfit text-white group-hover:text-accentcyan transition-colors duration-300">
+          Hashir Butt
+        </span>
+        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-accentcyan/10 text-accentcyan border border-accentcyan/20">
+          <span class="w-1.5 h-1.5 bg-accentcyan rounded-full mr-1.5 animate-pulse"></span>
+          AI & Backend Engineer
+        </span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="#home" class="nav-link text-sm font-semibold tracking-wide text-accentcyan border-b-2 border-accentcyan pb-1 transition-all duration-300">Home</a>
+        <a href="#about" class="nav-link text-sm font-semibold tracking-wide text-gray-400 hover:text-white border-b-2 border-transparent hover:border-white pb-1 transition-all duration-300">About</a>
+        <a href="#skills" class="nav-link text-sm font-semibold tracking-wide text-gray-400 hover:text-white border-b-2 border-transparent hover:border-white pb-1 transition-all duration-300">Skills</a>
+        <a href="#experience" class="nav-link text-sm font-semibold tracking-wide text-gray-400 hover:text-white border-b-2 border-transparent hover:border-white pb-1 transition-all duration-300">Experience</a>
+        <a href="#contact" class="nav-link text-sm font-semibold tracking-wide text-gray-400 hover:text-white border-b-2 border-transparent hover:border-white pb-1 transition-all duration-300">Contact</a>
+      </nav>
+
+      <!-- Get in Touch CTA -->
+      <div class="hidden md:block">
+        <a href="#contact" class="btn-shimmer px-6 py-2.5 bg-gradient-to-r from-accentcyan to-accentpurple hover:from-accentcyan/90 hover:to-accentpurple/90 text-white font-bold rounded-lg text-sm transition-all duration-300 shadow-neon-cyan shadow-md flex items-center gap-2">
+          <span>Get in Touch</span>
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="block md:hidden text-gray-300 hover:text-white focus:outline-none" aria-label="Toggle Menu">
+        <i class="fa-solid fa-bars-staggered text-2xl"></i>
+      </button>
+
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileDrawer" class="hidden absolute top-full left-0 w-full bg-darkbg/95 border-b border-white/10 backdrop-blur-xl transition-all duration-300">
+      <nav class="flex flex-col px-6 py-6 space-y-4">
+        <a href="#home" class="mobile-nav-link text-lg font-medium text-accentcyan">Home</a>
+        <a href="#about" class="mobile-nav-link text-lg font-medium text-gray-300 hover:text-white">About</a>
+        <a href="#skills" class="mobile-nav-link text-lg font-medium text-gray-300 hover:text-white">Skills</a>
+        <a href="#experience" class="mobile-nav-link text-lg font-medium text-gray-300 hover:text-white">Experience</a>
+        <a href="#contact" class="mobile-nav-link text-lg font-medium text-gray-300 hover:text-white">Contact</a>
+        <a href="#contact" class="mobile-nav-link px-5 py-3 text-center bg-gradient-to-r from-accentcyan to-accentpurple text-white font-bold rounded-lg text-sm shadow-md">
+          Get in Touch
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="home" class="min-h-[calc(100vh-80px)] flex items-center justify-center py-20 px-6 relative">
+    <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      
+      <!-- Text Content -->
+      <div class="lg:col-span-7 flex flex-col items-start space-y-6 text-left" data-aos="fade-right">
+        
+        <!-- Live Status Badge -->
+        <div class="flex items-center gap-2 px-4 py-2 bg-[#121A28] border border-white/5 rounded-full">
+          <span class="relative flex h-3 w-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+          </span>
+          <span class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Open to Opportunities & Collaborations</span>
+        </div>
+
+        <!-- Main Headline -->
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight font-outfit leading-tight text-white">
+          Engineering Scalable <span class="bg-gradient-to-r from-accentcyan to-accentpurple bg-clip-text text-transparent">AI Systems</span> & High-Performance Backends
+        </h1>
+
+        <!-- Subheadline -->
+        <p class="text-lg md:text-xl text-gray-400 font-normal leading-relaxed max-w-2xl">
+          Specializing in Generative AI orchestration, LLM application architecture, FastAPI asynchronous microservices, and real-time Computer Vision pipelines.
+        </p>
+
+        <!-- CTA Action Buttons -->
+        <div class="flex flex-wrap gap-4 w-full sm:w-auto">
+          <a href="#contact" class="btn-shimmer px-8 py-3.5 bg-gradient-to-r from-accentcyan to-accentpurple text-white font-extrabold rounded-lg text-base shadow-neon-cyan shadow-md hover:scale-[1.02] transition-all duration-300 text-center w-full sm:w-auto">
+            Contact Me
+          </a>
+          <a href="#experience" class="px-8 py-3.5 border border-white/10 hover:border-accentcyan hover:bg-accentcyan/5 text-gray-300 hover:text-white font-extrabold rounded-lg text-base transition-all duration-300 text-center w-full sm:w-auto">
+            View Experience
+          </a>
+        </div>
+
+        <!-- Floating tech badges container -->
+        <div class="pt-8 border-t border-white/5 w-full">
+          <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Core Technology Stack</p>
+          <div class="flex flex-wrap gap-3">
+            <span class="animate-float-1 inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#121A28] border border-white/5 rounded-lg text-sm text-gray-300 hover:border-accentcyan/30 hover:text-white hover:scale-105 transition-all duration-300 cursor-default">
+              <i class="fa-brands fa-python text-amber-300"></i> Python
+            </span>
+            <span class="animate-float-2 inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#121A28] border border-white/5 rounded-lg text-sm text-gray-300 hover:border-accentpurple/30 hover:text-white hover:scale-105 transition-all duration-300 cursor-default">
+              <i class="fa-solid fa-bolt text-emerald-400"></i> FastAPI
+            </span>
+            <span class="animate-float-3 inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#121A28] border border-white/5 rounded-lg text-sm text-gray-300 hover:border-accentpink/30 hover:text-white hover:scale-105 transition-all duration-300 cursor-default">
+              <i class="fa-solid fa-brain text-orange-400"></i> TensorFlow
+            </span>
+            <span class="animate-float-4 inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#121A28] border border-white/5 rounded-lg text-sm text-gray-300 hover:border-accentcyan/30 hover:text-white hover:scale-105 transition-all duration-300 cursor-default">
+              <i class="fa-solid fa-mobile-screen-button text-cyan-400"></i> Flutter
+            </span>
+            <span class="animate-float-5 inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#121A28] border border-white/5 rounded-lg text-sm text-gray-300 hover:border-accentpurple/30 hover:text-white hover:scale-105 transition-all duration-300 cursor-default">
+              <i class="fa-solid fa-database text-emerald-500"></i> Supabase
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Profile Image -->
+      <div class="lg:col-span-5 flex justify-center" data-aos="fade-left">
+        <div class="relative w-72 h-72 md:w-96 md:h-96 mx-auto flex items-center justify-center">
+          
+          <!-- Glowing background ring -->
+          <div class="absolute inset-0 bg-gradient-to-tr from-accentcyan to-accentpurple rounded-full blur-xl opacity-20 animate-pulse-slow"></div>
+          <div class="absolute -inset-1.5 bg-gradient-to-tr from-accentcyan to-accentpurple rounded-full opacity-40"></div>
+          
+          <!-- Image frame -->
+          <div class="relative w-full h-full rounded-full overflow-hidden border-4 border-darkbg">
+            <img src="profile.png" alt="Hashir Butt" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-full bg-gradient-to-tr from-accentpurple to-accentcyan flex items-center justify-center text-white text-5xl font-bold font-outfit shadow-neon-cyan shadow-md\'>HB</div>';">
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INTERACTIVE ABOUT ME SECTION -->
+  <section id="about" class="py-24 px-6 border-t border-white/5 bg-darkbg/40">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- Section Title -->
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-xs font-bold uppercase tracking-widest text-accentcyan">Biography</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold font-outfit mt-2 text-white">About Me</h2>
+        <div class="h-1 w-12 bg-gradient-to-r from-accentcyan to-accentpurple mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Bio text -->
+        <div class="lg:col-span-7 space-y-6" data-aos="fade-right">
+          <h3 class="text-2xl font-bold font-outfit text-white">
+            Results-Oriented AI Engineer & Backend Software Architect
+          </h3>
+          <p class="text-gray-300 leading-relaxed">
+            I am a passionate AI Engineer and Backend Software Engineer dedicated to architecting production-grade AI systems, scalable backend architectures, and real-time computer vision systems. I thrive on translating complex research models into high-concurrency, robust systems.
+          </p>
+          <p class="text-gray-300 leading-relaxed">
+            Currently pursuing my Bachelor of Science in Computer Science at COMSATS University Islamabad, I leverage software engineering methodologies and tools to deliver end-to-end solutions. My approach blends rigorous academic principles with industry-standard development workflows.
+          </p>
+          
+          <!-- Key characteristics list -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-accentcyan/10 flex items-center justify-center text-accentcyan border border-accentcyan/20">
+                <i class="fa-solid fa-location-dot"></i>
+              </span>
+              <div>
+                <p class="text-xs text-gray-500 font-bold uppercase">Location</p>
+                <p class="text-sm font-semibold text-white">Islamabad, Pakistan</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg bg-accentpurple/10 flex items-center justify-center text-accentpurple border border-accentpurple/20">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </span>
+              <div>
+                <p class="text-xs text-gray-500 font-bold uppercase">Education</p>
+                <p class="text-sm font-semibold text-white">BSc. Computer Science (2027)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metrics cards -->
+        <div class="lg:col-span-5 grid grid-cols-1 gap-6" data-aos="fade-left">
+          
+          <!-- Metric Card 1 -->
+          <div class="glow-card glow-card-purple p-6 bg-[#121A28] border border-white/5 rounded-xl hover:border-accentpurple/30 transition-all duration-300 flex items-start gap-4">
+            <span class="p-4 rounded-xl bg-accentpurple/10 text-accentpurple border border-accentpurple/20 text-2xl">
+              <i class="fa-solid fa-user-graduate"></i>
+            </span>
+            <div>
+              <h4 class="text-lg font-bold font-outfit text-white">CS Scholar</h4>
+              <p class="text-sm text-gray-400 mt-1">COMSATS University Islamabad. Strong foundation in software architectures, algorithms, and deep learning models.</p>
+            </div>
+          </div>
+
+          <!-- Metric Card 2 -->
+          <div class="glow-card p-6 bg-[#121A28] border border-white/5 rounded-xl hover:border-accentcyan/30 transition-all duration-300 flex items-start gap-4">
+            <span class="p-4 rounded-xl bg-accentcyan/10 text-accentcyan border border-accentcyan/25 text-2xl">
+              <i class="fa-solid fa-microchip"></i>
+            </span>
+            <div>
+              <h4 class="text-lg font-bold font-outfit text-white">AI Developer</h4>
+              <p class="text-sm text-gray-400 mt-1">Leveraging Generative AI, LLM orchestration, Prompt Engineering, OpenAI APIs, and custom CNNs for real-world impact.</p>
+            </div>
+          </div>
+
+          <!-- Metric Card 3 -->
+          <div class="glow-card glow-card-purple p-6 bg-[#121A28] border border-white/5 rounded-xl hover:border-accentpurple/30 transition-all duration-300 flex items-start gap-4">
+            <span class="p-4 rounded-xl bg-accentpurple/10 text-accentpurple border border-accentpurple/20 text-2xl">
+              <i class="fa-solid fa-server"></i>
+            </span>
+            <div>
+              <h4 class="text-lg font-bold font-outfit text-white">FastAPI & Real-Time Specialist</h4>
+              <p class="text-sm text-gray-400 mt-1">Designing asynchronous REST APIs, real-time Computer Vision inferences (OpenCV), and seamless Supabase integrations.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNICAL SKILLS MATRIX -->
+  <section id="skills" class="py-24 px-6 border-t border-white/5">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- Section Title -->
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-xs font-bold uppercase tracking-widest text-accentpurple">Expertise</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold font-outfit mt-2 text-white">Skills Matrix</h2>
+        <div class="h-1 w-12 bg-gradient-to-r from-accentpurple to-accentpink mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <!-- Skills Matrix Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Category 1 -->
+        <div class="glow-card p-8 bg-[#121A28] border border-white/5 rounded-2xl hover:border-accentcyan/30 transition-all duration-300" data-aos="fade-up">
+          <div class="flex items-center gap-4 mb-6">
+            <span class="p-3 rounded-lg bg-accentcyan/10 text-accentcyan text-xl border border-accentcyan/20">
+              <i class="fa-solid fa-brain"></i>
+            </span>
+            <h3 class="text-xl font-bold font-outfit text-white">AI & Machine Learning</h3>
+          </div>
+          <div class="flex flex-wrap gap-2.5">
+            <span class="px-3.5 py-1.5 bg-darkbg border border-white/5 rounded-full text-sm text-gray-300 hover:border-accentcyan hover:text-white transition-all duration-300 cursor-default">LLM Orchestration</span>
+            <span class="px-3.5 py-1.5 bg-darkbg border border-white/5 rounded-full text-sm text-gray-300 hover:border-accentcyan hover:text-white transition-all duration-300 cursor-default">Prompt Engineering</span>
+            <span class="px-3.5 py-1.5 bg-darkbg border border-white/5 rounded-full text-sm text-gray-300 hover:border-accentcyan hover:text-white transition-all duration-300 cursor-default">OpenAI API</span>
+            <span class="px-3.5 py-1.5 bg-darkbg border border-white/5 rounded-full text-sm text-gray-300 hover:border-accentcyan hover:text-white transition-all duration-300 cursor-default">TensorFlow / Keras</span>
+            <span class="px-3.5 py-1.5 bg-darkbg border border-white/5 rounded-full text-sm text-gray-300 hover:border-accentcyan hover:text-white transition-all duration-300 cursor-default">Computer Vision (OpenCV)</span>
+            <span class="px-3.5 py-1.5 bg-darkbg border border-white/5 rounded-full text-sm text-gray-300 hover:border-accentcyan hover:text-white transition-all duration-300 cursor-default">Deep Learning (CNNs)</span>
+          </div>
+        </div>
+
+        <!-- Category 2 -->
+        <div class="glow-card glow-card-purple p-8 bg-[#121A28] border border-white/5 rounded-2xl hover:border-accentpurple/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+          <div class="flex items-center gap-4 mb-6">
+            <span class="p-3 rounded-lg bg-accentpurple/10 text-accentpurple text-xl border border-accentpurple/20">
+              <i class="fa-solid fa-code"></i>
+            </span>
+            <h3 class="text-xl font-bold font-outfit text-white">Advanced Backend Engineering</h3>
+          </div>
+          <div class="flex flex-wrap gap-2.5">
+            <span class="px-3.5 py-1.5 bg-darkbg border border-white/5 rounded-full text-sm text-gray-300 hover:border-accentpurple hover:text-white transition-all duration-300 cursor-default">Python</span>
+            <span class="px-3.5 py-1.5 bg-darkbg border border-white/5 rounded-full text-sm text-gray-300 hover:border-accentpurple hover:text-white transition-all duration-300 cursor-default">FastAPI</span>
+            <span class="px-3.5 py-1.5 bg-darkbg border border-white/5 rounded-full text-sm text-gray-300 hover:border-accentpurple hover:text-white transition-all duration-300 cursor-default">Flask</span>
+            <span class="px-3.5 py-1.5 bg-darkbg border border-white/5 rounded-full text-sm text-gray-300 hover:border-accentpurple hover:text-white transition-all duration-300 cursor-default">Asynchronous Microservices</span>
+            <span class="px-3.5 py-1.5 bg-darkbg border border-white/5 rounded-full text-sm text-gray-300 hover:border-accentpurple hover:text-white transition-all duration-300 cursor-default">REST API Architecture</span>
+          </div>
+        </div>
+
+        <!-- Category 3 -->
+        <div class="glow-card glow-card-purple p-8 bg-[#121A28] border border-white/5 rounded-2xl hover:border-accentpurple/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+          <div class="flex items-center gap-4 mb-6">
+            <span class="p-3 rounded-lg bg-accentpurple/10 text-accentpurple text-xl border border-accentpurple/20">
+              <i class="fa-solid fa-layer-group"></i>
+            </span>
+            <h3 class="text-xl font-bold font-outfit text-white">Infrastructure & Modern Tooling</h3>
+          </div>
+          <div class="flex flex-wrap gap-2.5">
+            <span class="px-3.5 py-1.5 bg-darkbg border border-white/5 rounded-full text-sm text-gray-300 hover:border-accentpurple hover:text-white transition-all duration-300 cursor-default">Flutter</span>
+            <span class="px-3.5 py-1.5 bg-darkbg border border-white/5 rounded-full text-sm text-gray-300 hover:border-accentpurple hover:text-white transition-all duration-300 cursor-default">Dart</span>
+            <span class="px-3.5 py-1.5 bg-darkbg border border-white/5 rounded-full text-sm text-gray-300 hover:border-accentpurple hover:text-white transition-all duration-300 cursor-default">Supabase</span>
+            <span class="px-3.5 py-1.5 bg-darkbg border border-white/5 rounded-full text-sm text-gray-300 hover:border-accentpurple hover:text-white transition-all duration-300 cursor-default">Git / GitHub</span>
+            <span class="px-3.5 py-1.5 bg-darkbg border border-white/5 rounded-full text-sm text-gray-300 hover:border-accentpurple hover:text-white transition-all duration-300 cursor-default">VS Code</span>
+            <span class="px-3.5 py-1.5 bg-darkbg border border-white/5 rounded-full text-sm text-gray-300 hover:border-accentpurple hover:text-white transition-all duration-300 cursor-default">Tkinter</span>
+          </div>
+        </div>
+
+        <!-- Category 4 -->
+        <div class="glow-card p-8 bg-[#121A28] border border-white/5 rounded-2xl hover:border-accentcyan/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+          <div class="flex items-center gap-4 mb-6">
+            <span class="p-3 rounded-lg bg-accentcyan/10 text-accentcyan text-xl border border-accentcyan/20">
+              <i class="fa-solid fa-binoculars"></i>
+            </span>
+            <h3 class="text-xl font-bold font-outfit text-white">Specialized Domains</h3>
+          </div>
+          <div class="flex flex-wrap gap-2.5">
+            <span class="px-3.5 py-1.5 bg-darkbg border border-white/5 rounded-full text-sm text-gray-300 hover:border-accentcyan hover:text-white transition-all duration-300 cursor-default">Real-Time Computer Vision</span>
+            <span class="px-3.5 py-1.5 bg-darkbg border border-white/5 rounded-full text-sm text-gray-300 hover:border-accentcyan hover:text-white transition-all duration-300 cursor-default">Custom ML Pipelines</span>
+            <span class="px-3.5 py-1.5 bg-darkbg border border-white/5 rounded-full text-sm text-gray-300 hover:border-accentcyan hover:text-white transition-all duration-300 cursor-default">Asynchronous Request Handling</span>
+            <span class="px-3.5 py-1.5 bg-darkbg border border-white/5 rounded-full text-sm text-gray-300 hover:border-accentcyan hover:text-white transition-all duration-300 cursor-default">Data Modeling & DB Integration</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS SECTION GOES HERE LATER -->
+
+  <!-- PROFESSIONAL EXPERIENCE & EDUCATION SECTION -->
+  <section id="experience" class="py-24 px-6 border-t border-white/5 bg-darkbg/40">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- Section Title -->
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-xs font-bold uppercase tracking-widest text-accentcyan">Trajectory</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold font-outfit mt-2 text-white">Experience & Education</h2>
+        <div class="h-1 w-12 bg-gradient-to-r from-accentcyan to-accentpurple mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <!-- Experience & Education Layout -->
+      <div class="relative max-w-4xl mx-auto pl-6 border-l border-white/10 space-y-12">
+        
+        <!-- Entry 1: Professional Experience -->
+        <div class="relative" data-aos="fade-up">
+          
+          <!-- Timeline Node Point -->
+          <div class="absolute -left-10 top-1 w-8 h-8 rounded-full bg-darkbg border-2 border-accentcyan flex items-center justify-center text-accentcyan shadow-neon-cyan shadow-sm">
+            <i class="fa-solid fa-briefcase text-xs"></i>
+          </div>
+
+          <div class="space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <h3 class="text-xl md:text-2xl font-bold font-outfit text-white">AI & Backend Engineer</h3>
+                <p class="text-sm font-semibold text-accentcyan mt-0.5">Project-Based Development | COMSATS University Islamabad</p>
+              </div>
+              <span class="px-3 py-1 bg-accentcyan/10 border border-accentcyan/25 text-accentcyan text-xs font-bold rounded-full self-start sm:self-center">
+                2023 – Present
+              </span>
+            </div>
+            
+            <ul class="space-y-2.5 text-gray-300 text-sm md:text-base list-disc pl-5">
+              <li>Architecting production-grade AI and backend solutions, applying rigorous software engineering principles across end-to-end development lifecycles.</li>
+              <li>Leveraging industry-standard tools like FastAPI, Supabase, and OpenAI API to deliver high-performance technical prototypes.</li>
+            </ul>
+
+            <!-- Highlighted Projects inside Experience -->
+            <div class="pt-4 space-y-4">
+              <h4 class="text-xs font-bold text-gray-500 uppercase tracking-widest">Key Projects Architected & Delivered</h4>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                
+                <!-- Project 1 -->
+                <div class="p-4 bg-[#121A28] border border-white/5 rounded-xl hover:border-accentcyan/30 hover:scale-[1.01] transition-all duration-300">
+                  <h5 class="font-bold text-white text-sm">Drowsiness Detector</h5>
+                  <p class="text-xs text-gray-400 mt-1">Real-time driver safety system using fine-tuned deep learning (TensorFlow/Keras) and facial landmarks (OpenCV). Low-latency Flask backend.</p>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="p-4 bg-[#121A28] border border-white/5 rounded-xl hover:border-accentcyan/30 hover:scale-[1.01] transition-all duration-300">
+                  <h5 class="font-bold text-white text-sm">ForSee Health</h5>
+                  <p class="text-xs text-gray-400 mt-1">Full-stack, AI-powered health & nutrition mobile application. Built FastAPI ML-diet analysis backend & responsive Flutter client.</p>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="p-4 bg-[#121A28] border border-white/5 rounded-xl hover:border-accentcyan/30 hover:scale-[1.01] transition-all duration-300">
+                  <h5 class="font-bold text-white text-sm">Auto Restaurant</h5>
+                  <p class="text-xs text-gray-400 mt-1">Automated full-stack ordering management system. Async FastAPI architecture adhering strictly to OOP backend design patterns.</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Entry 2: Education -->
+        <div class="relative" data-aos="fade-up" data-aos-delay="100">
+          
+          <!-- Timeline Node Point -->
+          <div class="absolute -left-10 top-1 w-8 h-8 rounded-full bg-darkbg border-2 border-accentpurple flex items-center justify-center text-accentpurple shadow-neon-purple shadow-sm">
+            <i class="fa-solid fa-graduation-cap text-xs"></i>
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <h3 class="text-xl md:text-2xl font-bold font-outfit text-white">BSc. in Computer Science</h3>
+                <p class="text-sm font-semibold text-accentpurple mt-0.5">COMSATS University Islamabad, Pakistan</p>
+              </div>
+              <span class="px-3 py-1 bg-accentpurple/10 border border-accentpurple/25 text-accentpurple text-xs font-bold rounded-full self-start sm:self-center">
+                Expected Grad: 2027
+              </span>
+            </div>
+            
+            <p class="text-gray-300 text-sm md:text-base leading-relaxed">
+              Acquiring deep foundations in algorithm design, object-oriented backend architectures, data structures, and database systems. Specializing research focus in real-time computer vision applications, model optimization, and Generative AI prompt engineering.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE CONTACT & FOOTER SECTION -->
+  <section id="contact" class="py-24 px-6 border-t border-white/5">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- Section Title -->
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-xs font-bold uppercase tracking-widest text-accentpink">Connect</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold font-outfit mt-2 text-white">Get In Touch</h2>
+        <div class="h-1 w-12 bg-gradient-to-r from-accentpink to-accentpurple mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-5xl mx-auto">
+        
+        <!-- Left: Direct Contact Information -->
+        <div class="lg:col-span-5 space-y-6" data-aos="fade-right">
+          <h3 class="text-2xl font-bold font-outfit text-white">Let's Collaborate</h3>
+          <p class="text-gray-400 leading-relaxed">
+            I am always open to discussing new system architectures, AI pipelines, collaborative projects, or software engineering positions.
+          </p>
+
+          <div class="space-y-4">
+            
+            <!-- Email -->
+            <a href="mailto:hashirbutt09@gmail.com" class="glow-card flex items-center gap-4 p-4 bg-[#121A28] border border-white/5 rounded-xl hover:border-accentcyan/30 hover:scale-[1.01] transition-all duration-300">
+              <span class="w-10 h-10 rounded-lg bg-accentcyan/10 flex items-center justify-center text-accentcyan border border-accentcyan/20">
+                <i class="fa-solid fa-envelope"></i>
+              </span>
+              <div>
+                <p class="text-xs text-gray-500 font-bold uppercase">Email Me</p>
+                <p class="text-sm md:text-base font-semibold text-white">hashirbutt09@gmail.com</p>
+              </div>
+            </a>
+
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com/in/hashir-hussain-butt" target="_blank" rel="noopener noreferrer" class="glow-card glow-card-purple flex items-center gap-4 p-4 bg-[#121A28] border border-white/5 rounded-xl hover:border-accentpurple/30 hover:scale-[1.01] transition-all duration-300">
+              <span class="w-10 h-10 rounded-lg bg-accentpurple/10 flex items-center justify-center text-accentpurple border border-accentpurple/20">
+                <i class="fa-brands fa-linkedin-in"></i>
+              </span>
+              <div>
+                <p class="text-xs text-gray-500 font-bold uppercase">Connect on LinkedIn</p>
+                <p class="text-sm md:text-base font-semibold text-white">linkedin.com/in/hashir-hussain-butt</p>
+              </div>
+            </a>
+
+            <!-- Phone -->
+            <a href="tel:+923399745719" class="glow-card flex items-center gap-4 p-4 bg-[#121A28] border border-white/5 rounded-xl hover:border-accentpink/30 hover:scale-[1.01] transition-all duration-300">
+              <span class="w-10 h-10 rounded-lg bg-accentpink/10 flex items-center justify-center text-accentpink border border-accentpink/20">
+                <i class="fa-solid fa-phone"></i>
+              </span>
+              <div>
+                <p class="text-xs text-gray-500 font-bold uppercase">Call / WhatsApp</p>
+                <p class="text-sm md:text-base font-semibold text-white">+92-339-9745719</p>
+              </div>
+            </a>
+
+          </div>
+        </div>
+
+        <!-- Right: Contact Form -->
+        <div class="lg:col-span-7" data-aos="fade-left">
+          <div class="p-6 md:p-8 bg-[#121A28] border border-white/5 rounded-2xl">
+            <form id="contactForm" class="space-y-5">
+              
+              <!-- Google Sign-In & Badge Section -->
+              <div class="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-darkbg/50 border border-white/5 rounded-xl">
+                <div id="googleInfoBlock" class="flex items-center gap-3">
+                  <span class="w-8 h-8 rounded-lg bg-accentcyan/10 flex items-center justify-center text-accentcyan border border-accentcyan/20">
+                    <i class="fa-brands fa-google text-sm"></i>
+                  </span>
+                  <div>
+                    <p class="text-xs font-bold text-gray-300">Instant Pre-fill</p>
+                    <p class="text-[10px] text-gray-500">Sign in with Google to pre-fill and verify your email.</p>
+                  </div>
+                </div>
+
+                <!-- Google Button (Visible when signed out) -->
+                <div id="googleBtnContainer" class="w-full sm:w-auto flex justify-center">
+                  <div id="g_id_onload"
+                       data-client_id="35942660184-b9a4ugupnehf1992np9hmrhtdnn4orl0.apps.googleusercontent.com"
+                       data-context="signin"
+                       data-ux_mode="popup"
+                       data-callback="handleCredentialResponse"
+                       data-auto_prompt="false">
+                  </div>
+                  <div class="g_id_signin"
+                       data-type="standard"
+                       data-shape="pill"
+                       data-theme="filled_blue"
+                       data-text="signin_with"
+                       data-size="medium"
+                       data-logo_alignment="left">
+                  </div>
+                </div>
+
+                <!-- Signed In User Badge (Hidden by default) -->
+                <div id="googleUserBadge" class="hidden flex items-center justify-between w-full">
+                  <div class="flex items-center gap-3">
+                    <img id="googleUserAvatar" src="" alt="Google Avatar" class="w-8 h-8 rounded-full border border-accentcyan">
+                    <div class="text-left">
+                      <p id="googleUserName" class="text-xs font-bold text-white"></p>
+                      <p class="text-[10px] text-green-400 flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                        Google Verified Email
+                      </p>
+                    </div>
+                  </div>
+                  <button type="button" id="googleSignOutBtn" class="text-xs text-gray-500 hover:text-red-400 font-bold uppercase tracking-wider transition-colors duration-300">
+                    Sign Out
+                  </button>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="space-y-2">
+                  <label for="name" class="text-xs font-bold text-gray-400 uppercase">Your Name</label>
+                  <input type="text" id="name" required class="w-full px-4 py-3 bg-darkbg border border-white/5 hover:border-white/10 focus:border-accentcyan focus:outline-none rounded-lg text-white text-sm transition-all duration-300">
+                </div>
+                <div class="space-y-2">
+                  <label for="email" class="text-xs font-bold text-gray-400 uppercase">Your Email</label>
+                  <input type="email" id="email" required class="w-full px-4 py-3 bg-darkbg border border-white/5 hover:border-white/10 focus:border-accentcyan focus:outline-none rounded-lg text-white text-sm transition-all duration-300">
+                </div>
+              </div>
+              <div class="space-y-2">
+                <label for="subject" class="text-xs font-bold text-gray-400 uppercase">Subject</label>
+                <input type="text" id="subject" required class="w-full px-4 py-3 bg-darkbg border border-white/5 hover:border-white/10 focus:border-accentcyan focus:outline-none rounded-lg text-white text-sm transition-all duration-300">
+              </div>
+              <div class="space-y-2">
+                <label for="message" class="text-xs font-bold text-gray-400 uppercase">Message</label>
+                <textarea id="message" rows="4" required class="w-full px-4 py-3 bg-darkbg border border-white/5 hover:border-white/10 focus:border-accentcyan focus:outline-none rounded-lg text-white text-sm resize-none transition-all duration-300"></textarea>
+              </div>
+              
+              <button type="submit" class="btn-shimmer w-full py-4 bg-gradient-to-r from-accentcyan to-accentpurple text-white font-extrabold rounded-lg text-base shadow-neon-cyan shadow-md hover:scale-[1.01] transition-all duration-300 flex items-center justify-center gap-2">
+                <span>Send Message</span>
+                <i class="fa-solid fa-paper-plane text-sm"></i>
+              </button>
+            </form>
+            
+            <!-- Success Message Toast (Hidden by default) -->
+            <div id="formSuccess" class="hidden flex flex-col items-center justify-center text-center p-8 space-y-5">
+              <span class="w-16 h-16 rounded-full bg-green-500/10 text-green-500 border border-green-500/20 flex items-center justify-center text-3xl shadow-neon shadow-md animate-bounce">
+                <i class="fa-solid fa-check"></i>
+              </span>
+              <div>
+                <h4 class="text-xl font-bold font-outfit text-white">Message Logged!</h4>
+                <p class="text-sm text-gray-400 mt-2">Your contact request has been validated and sent to hashirbutt09@gmail.com.</p>
+              </div>
+              
+              <!-- Mailto confirmation link -->
+              <div class="w-full pt-2">
+                <p class="text-xs text-gray-500 mb-3">Want to guarantee instant delivery and bypass spam filters? Send a copy directly from your inbox:</p>
+                <a id="directMailLink" href="#" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-accentcyan/10 hover:bg-accentcyan/25 border border-accentcyan/30 hover:border-accentcyan text-accentcyan hover:text-white font-bold rounded-lg text-sm transition-all duration-300 w-full">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Send Direct Email Copy</span>
+                </a>
+              </div>
+
+              <button id="resetFormBtn" class="text-xs font-bold text-gray-500 hover:text-white uppercase tracking-wider pt-3">
+                Send another message
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-8 px-6 border-t border-white/5 bg-[#080B12]">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-xs md:text-sm text-gray-500">
+        &copy; 2026 Hashir Butt. All rights reserved.
+      </p>
+      
+      <!-- Back to Top Link -->
+      <a href="#home" class="p-2.5 rounded-lg bg-[#121A28] border border-white/5 text-gray-400 hover:text-white hover:border-accentcyan hover:scale-105 transition-all duration-300 flex items-center gap-2 text-xs font-semibold">
+        <span>Back to Top</span>
+        <i class="fa-solid fa-arrow-up text-xs"></i>
+      </a>
+    </div>
+  </footer>
+
+  <!-- AOS (Animate On Scroll) JS -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  
+  <script>
+    // Initialize AOS animations
+    AOS.init({
+      duration: 800,
+      once: true,
+      easing: 'ease-out-cubic'
+    });
+
+    // Mobile Navbar Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileDrawer.classList.toggle('hidden');
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileDrawer.classList.add('hidden');
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!mobileMenuBtn.contains(e.target) && !mobileDrawer.contains(e.target)) {
+        mobileDrawer.classList.add('hidden');
+      }
+    });
+
+    // Interactive Card Mouse Glow Coordinate Updater
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.glow-card');
+      cards.forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--x', `${x}px`);
+          card.style.setProperty('--y', `${y}px`);
+        });
+      });
+    });
+
+    // Contact Form Success Submission Interceptor
+    const contactForm = document.getElementById('contactForm');
+    const formSuccess = document.getElementById('formSuccess');
+    const resetFormBtn = document.getElementById('resetFormBtn');
+    const directMailLink = document.getElementById('directMailLink');
+
+    // Google Sign-In state variables and DOM elements
+    const googleBtnContainer = document.getElementById('googleBtnContainer');
+    const googleInfoBlock = document.getElementById('googleInfoBlock');
+    const googleUserBadge = document.getElementById('googleUserBadge');
+    const googleUserAvatar = document.getElementById('googleUserAvatar');
+    const googleUserName = document.getElementById('googleUserName');
+    const googleSignOutBtn = document.getElementById('googleSignOutBtn');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+
+    // Decode JWT from Google credential
+    function decodeJwt(token) {
+      try {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+        return JSON.parse(jsonPayload);
+      } catch (e) {
+        console.error("Failed to decode Google ID Token", e);
+        return null;
+      }
+    }
+
+    // Google Sign-In Callback
+    window.handleCredentialResponse = function(response) {
+      const responsePayload = decodeJwt(response.credential);
+      if (!responsePayload) return;
+
+      // Prefill and lock inputs
+      nameInput.value = responsePayload.name;
+      nameInput.readOnly = true;
+      nameInput.classList.add('bg-darkbg/50', 'border-accentcyan/30', 'text-gray-400', 'cursor-not-allowed');
+      nameInput.classList.remove('hover:border-white/10', 'focus:border-accentcyan');
+
+      emailInput.value = responsePayload.email;
+      emailInput.readOnly = true;
+      emailInput.classList.add('bg-darkbg/50', 'border-accentcyan/30', 'text-gray-400', 'cursor-not-allowed');
+      emailInput.classList.remove('hover:border-white/10', 'focus:border-accentcyan');
+
+      // Update badge visual info
+      googleUserAvatar.src = responsePayload.picture;
+      googleUserName.textContent = responsePayload.name;
+
+      // Update visibility states
+      googleInfoBlock.classList.add('hidden');
+      googleBtnContainer.classList.add('hidden');
+      googleUserBadge.classList.remove('hidden');
+    };
+
+    // Google Sign-Out handler
+    googleSignOutBtn.addEventListener('click', () => {
+      // Clear and unlock inputs
+      nameInput.value = '';
+      nameInput.readOnly = false;
+      nameInput.classList.remove('bg-darkbg/50', 'border-accentcyan/30', 'text-gray-400', 'cursor-not-allowed');
+      nameInput.classList.add('hover:border-white/10', 'focus:border-accentcyan');
+
+      emailInput.value = '';
+      emailInput.readOnly = false;
+      emailInput.classList.remove('bg-darkbg/50', 'border-accentcyan/30', 'text-gray-400', 'cursor-not-allowed');
+      emailInput.classList.add('hover:border-white/10', 'focus:border-accentcyan');
+
+      // Restore visibility states
+      googleUserBadge.classList.add('hidden');
+      googleInfoBlock.classList.remove('hidden');
+      googleBtnContainer.classList.remove('hidden');
+    });
+
+    // Local blacklisted/dummy domains (Solution A)
+    const blacklistedDomains = [
+      'example.com', 'test.com', 'dummy.com', 'fake.com', 'test.org', 'hello.com',
+      'mailinator.com', 'yopmail.com', 'tempmail.com', '10minutemail.com', 
+      'throwawaymail.com', 'trashmail.com', 'sharklasers.com', 'guerrillamail.com'
+    ];
+
+    // Block common dummy usernames (Solution A continuation)
+    function isFakeEmailPrefix(email) {
+      const prefix = email.split('@')[0]?.toLowerCase();
+      if (!prefix) return true;
+      
+      // Block if prefix is too short
+      if (prefix.length < 3) return true;
+      
+      // Block if prefix consists solely of numbers (e.g. 12345)
+      if (/^\d+$/.test(prefix)) return true;
+      
+      // Block if prefix has no vowels (e.g. tst, sdf, zxcv, ghjk - keyboard mashing)
+      // English vowels: a, e, i, o, u, y (y is treated as a vowel helper here)
+      if (!/[aeiouy]/i.test(prefix)) return true;
+      
+      // Block if prefix consists of a single repeating character (e.g. aaaa, zzzz)
+      if (/^(.)\1+$/.test(prefix)) return true;
+      
+      // Block common dummy words
+      const blockedPrefixes = ['test', 'admin', 'spam', 'hello', 'dummy', 'user', 'noreply', 'fake', 'asdf', 'qwerty', 'no-reply', 'temp', 'tst'];
+      if (blockedPrefixes.some(word => prefix === word || (prefix.includes(word) && prefix.length < 7))) {
+        return true;
+      }
+      
+      return false;
+    }
+
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitButton = contactForm.querySelector('button[type="submit"]');
+      const submitButtonText = submitButton.querySelector('span');
+      const submitButtonIcon = submitButton.querySelector('i');
+      
+      const emailInputVal = emailInput.value.trim();
+      const nameInputVal = nameInput.value.trim();
+      const subjectInput = document.getElementById('subject').value.trim();
+      const messageInput = document.getElementById('message').value.trim();
+
+      // Step 1: Local domain and prefix blacklist check (Solution A)
+      const emailDomain = emailInputVal.split('@')[1]?.toLowerCase();
+      if (blacklistedDomains.includes(emailDomain) || isFakeEmailPrefix(emailInputVal)) {
+        alert('Please enter a professional email address. Disposable, dummy, or anonymous email styles are not allowed.');
+        return;
+      }
+
+      // Update button state to sending / verifying
+      submitButton.disabled = true;
+      const originalText = submitButtonText.textContent;
+      submitButtonText.textContent = 'Verifying & Sending...';
+      submitButtonIcon.className = 'fa-solid fa-circle-notch animate-spin text-sm';
+
+      const formData = {
+        name: nameInputVal,
+        email: emailInputVal,
+        subject: subjectInput,
+        message: messageInput
+      };
+
+      try {
+        const response = await fetch('http://127.0.0.1:5000/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          // Configure native mailto link for direct mail fallback (Solution B)
+          const mailtoSubject = encodeURIComponent(`Portfolio Message: ${subjectInput}`);
+          const mailtoBody = encodeURIComponent(
+            `Hi Hashir,\n\nMy name is ${nameInputVal}.\nHere is a copy of my message:\n\n---\n${messageInput}\n---\n\nBest regards,\n${nameInputVal}\n(${emailInputVal})`
+          );
+          directMailLink.href = `mailto:hashirbutt09@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+
+          // Hide the form fields
+          contactForm.classList.add('hidden');
+          // Show the success panel
+          formSuccess.classList.remove('hidden');
+        } else {
+          // Display the backend validation error (e.g. "This email address does not exist or cannot receive mail.")
+          alert(result.detail || 'Oops! There was a problem submitting your form. Please verify your inputs.');
+        }
+      } catch (error) {
+        alert('Could not connect to the backend verification server. Please make sure your FastAPI server is running locally on port 5000.');
+      } finally {
+        // Reset button state
+        submitButton.disabled = false;
+        submitButtonText.textContent = originalText;
+        submitButtonIcon.className = 'fa-solid fa-paper-plane text-sm';
+      }
+    });
+
+    resetFormBtn.addEventListener('click', () => {
+      // Clear form values
+      contactForm.reset();
+      
+      // Make sure the fields are unlocked
+      nameInput.readOnly = false;
+      nameInput.classList.remove('bg-darkbg/50', 'border-accentcyan/30', 'text-gray-400', 'cursor-not-allowed');
+      nameInput.classList.add('hover:border-white/10', 'focus:border-accentcyan');
+      
+      emailInput.readOnly = false;
+      emailInput.classList.remove('bg-darkbg/50', 'border-accentcyan/30', 'text-gray-400', 'cursor-not-allowed');
+      emailInput.classList.add('hover:border-white/10', 'focus:border-accentcyan');
+      
+      // Restore Google states
+      googleUserBadge.classList.add('hidden');
+      googleInfoBlock.classList.remove('hidden');
+      googleBtnContainer.classList.remove('hidden');
+
+      // Restore form display
+      formSuccess.classList.add('hidden');
+      contactForm.classList.remove('hidden');
+    });
+
+    // Header Scroll Styling and Scrollspy Indicator
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.classList.add('py-3', 'shadow-md');
+        header.classList.remove('py-4');
+      } else {
+        header.classList.add('py-4');
+        header.classList.remove('py-3', 'shadow-md');
+      }
+
+      // Scrollspy detection
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.nav-link');
+      let currentSectionId = 'home';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (window.scrollY >= sectionTop) {
+          currentSectionId = section.getAttribute('id');
+        }
+      });
+      
+      navLinks.forEach(link => {
+        link.classList.remove('text-accentcyan', 'border-accentcyan');
+        link.classList.add('text-gray-400', 'border-transparent');
+        if (link.getAttribute('href') === `#${currentSectionId}`) {
+          link.classList.remove('text-gray-400', 'border-transparent');
+          link.classList.add('text-accentcyan', 'border-accentcyan');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
