@@ -18,13 +18,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/")
-def read_root():
-    return {"status": "ok", "message": "Backend is running!"}
-
 @app.get("/api/health")
+@app.get("/health")
+@app.get("/")
 def health_check():
-    return {"status": "ok", "message": "FastAPI is running on Vercel!"}
+    return {"status": "ok", "message": "Backend is running!"}
 
 class ContactForm(BaseModel):
     name: str
@@ -37,6 +35,7 @@ ABSTRACT_API_KEY = os.getenv("ABSTRACT_API_KEY", "1240b693709b4eaca3f9b6d307b12b
 FORMSPREE_ENDPOINT = "https://formspree.io/f/xwvgznvz"
 
 @app.post("/api/contact")
+@app.post("/contact")
 async def verify_and_send(data: ContactForm):
     # 1. Query Abstract API
     verify_url = f"https://emailvalidation.abstractapi.com/v1/?api_key={ABSTRACT_API_KEY}&email={data.email}"
