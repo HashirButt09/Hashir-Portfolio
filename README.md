@@ -23,7 +23,7 @@ This project features a fully functional asynchronous contact form that validate
 Hashir-Portfolio/
 │
 ├── index.html          # Portfolio frontend layout, styles, and client-side logic
-├── main.py            # FastAPI backend server handling contact validation and dispatching
+├── app.py             # FastAPI backend server handling contact validation and dispatching
 ├── requirements.txt   # Backend Python package dependencies
 ├── profile.png        # Profile picture asset
 ├── .gitignore         # Prevents tracking cache/virtualenv/secrets files
@@ -80,7 +80,7 @@ Follow these instructions to configure and run the portfolio locally on your mac
 6. **Start the FastAPI backend server**:
    We must bind it to port `5000` because the frontend expects the backend to run on port 5000:
    ```bash
-   uvicorn main:app --reload --port 5000
+   uvicorn app:app --reload --port 5000
    ```
    You should see uvicorn start successfully on `http://127.0.0.1:5000`.
 

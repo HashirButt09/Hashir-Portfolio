@@ -4,6 +4,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from dotenv import load_dotenv
+import uvicorn
 
 load_dotenv()
 
@@ -16,6 +17,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.get("/")
+def read_root():
+    return {"status": "ok", "message": "Backend is running!"}
 
 class ContactForm(BaseModel):
     name: str
@@ -84,3 +89,8 @@ async def verify_and_send(data: ContactForm):
             )
 
     return {"status": "success", "message": "Message verified and sent successfully!"}
+
+if __name__ == "__main__":
+    # Get port from environment or fallback to standard port
+    port = int(os.environ.get("PORT", 5000))
+    uvicorn.run("app:app", host="0.0.0.0", port=port, reload=False)
