@@ -22,6 +22,10 @@ app.add_middleware(
 def read_root():
     return {"status": "ok", "message": "Backend is running!"}
 
+@app.get("/api/health")
+def health_check():
+    return {"status": "ok", "message": "FastAPI is running on Vercel!"}
+
 class ContactForm(BaseModel):
     name: str
     email: str
@@ -93,4 +97,9 @@ async def verify_and_send(data: ContactForm):
 if __name__ == "__main__":
     # Get port from environment or fallback to standard port
     port = int(os.environ.get("PORT", 5000))
-    uvicorn.run("app:app", host="0.0.0.0", port=port, reload=False)
+    # Ensure the parent directory is in sys.path so uvicorn can find the 'api' module
+    import sys
+    parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    if parent_dir not in sys.path:
+        sys.path.insert(0, parent_dir)
+    uvicorn.run("api.index:app", host="0.0.0.0", port=port, reload=False)

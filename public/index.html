@@ -957,7 +957,7 @@
       };
 
       try {
-        const response = await fetch('http://127.0.0.1:5000/api/contact', {
+        const response = await fetch('/api/contact', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -984,7 +984,7 @@
           alert(result.detail || 'Oops! There was a problem submitting your form. Please verify your inputs.');
         }
       } catch (error) {
-        alert('Could not connect to the backend verification server. Please make sure your FastAPI server is running locally on port 5000.');
+        alert('Could not connect to the backend verification server. Please try again later or use the direct mail option.');
       } finally {
         // Reset button state
         submitButton.disabled = false;
