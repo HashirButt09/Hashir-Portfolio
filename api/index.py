@@ -1,6 +1,6 @@
 import os
 import httpx
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from dotenv import load_dotenv
@@ -92,17 +92,6 @@ async def verify_and_send(data: ContactForm):
             )
 
     return {"status": "success", "message": "Message verified and sent successfully!"}
-
-@app.api_route("/{path_name:path}", methods=["GET", "POST", "PUT", "DELETE"])
-async def catch_all(request: Request, path_name: str):
-    return {
-        "request_url": str(request.url),
-        "path_name": path_name,
-        "root_path": request.scope.get("root_path"),
-        "path": request.scope.get("path"),
-        "query_string": request.scope.get("query_string", b"").decode(),
-        "detail": "This is a catch-all debug route"
-    }
 
 if __name__ == "__main__":
     # Get port from environment or fallback to standard port
